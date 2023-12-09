@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Compromisso {
-    private String nome;
+    public static void setStatus(String string) {
+		
+
+	}
+	
+}
 
     
-}
