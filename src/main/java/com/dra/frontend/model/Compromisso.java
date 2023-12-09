@@ -8,7 +8,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Compromisso {
-    private String nome;
+	
+	private String status;
+	 
+	public void aceitar() {
+	    
+	this.status = "ACEITO";
+	    
+	 }
+	
+	public void delete() {
+    
+    }
+
+    public static void setStatus(String string) {
+		
+
+	}
+	
+}
 
     
-}
