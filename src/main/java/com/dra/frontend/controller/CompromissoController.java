@@ -23,13 +23,13 @@ public class CompromissoController {
     CompromissoService compromissoService;
     
     @PostMapping("/{id}")
-    public String negarContato(@PathVariable long id, @Validated Compromisso compromisso, BindingResult result, Model model) {
+    public String negarCompromisso(@PathVariable long id, @Validated Compromisso compromisso, BindingResult result, Model model) {
     	 compromissoService.postCompromisso(compromisso);
     	return "redirect:/compromisso";
     }
     
     @PutMapping("/{id}")
-    public String cancelarContato(@PathVariable long id, @Validated Compromisso compromisso, BindingResult result, Model model) {
+    public String cancelarCompromisso(@PathVariable long id, @Validated Compromisso compromisso, BindingResult result, Model model) {
     	 compromissoService.putCompromisso(id, compromisso);
     	return "redirect:/compromisso";
     }
