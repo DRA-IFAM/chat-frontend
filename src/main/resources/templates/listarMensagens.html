@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Listar contato</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="/globalStyles.css" />
+	<link rel="stylesheet" type="text/css" href="/listaContato.css" />
+
+</head>
+<body>
+    <nav th:insert="./fragments/navBar.html :: navbar"></nav>
+    <h2>Lista de Mensagens Recebidas</h2>
+    <h4 th:if="${#lists.isEmpty(mensagens)}">Não há mensagens</h4>
+	<div class="table-responsive" th:unless="${#lists.isEmpty(mensagens)}" th:fragment="listaMensagem">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table-info">
+              <th scope="col"></th>
+              <th scope="col">Emissor</th>
+              <th scope="col">email</th>
+              <th scope="col">Assunto</th>
+              <th scope="col">DataHora</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr th:each="mensagem : ${mensagens}">
+              <th scope="row" class="iconsCel">
+                  <form th:action="@{'/mensagem/deletar/{id}'(id=${mensagem.id})}" th:method="delete" >
+                    <button name="deletar contato" type="submit" class="bi bi-trash"></button>
+                  </form>
+              </th>
+              <td th:text="${mensagem.assunto}"></td>
+              <td th:text="${mensagem.conteudo}"></td>
+              <td th:text="${mensagem.receptor}"></td>
+            </tr>
+
+          </tbody>
+        </table>
+  </div>
+
+</body>

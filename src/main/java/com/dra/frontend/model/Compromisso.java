@@ -8,7 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Compromisso {
-    private String nome;
+    private String titulo;
+    private String data;
+    private String local;
+    private String descricao;
+    private String[] convidados;
+    private Acao[] acoes;
+    private String status;
 
     
 }

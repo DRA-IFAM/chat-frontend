@@ -1,7 +1,7 @@
 package com.dra.frontend.model;
 
 
-
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Acao {
-    private String nome;
-
-    
+    private String titulo;
+    private Date dataRealizada;
+    private String descricao;
+    private Contato publicador;
 }
