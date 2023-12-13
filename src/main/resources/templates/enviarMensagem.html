@@ -18,19 +18,14 @@
   </head>
 
   <body>
-    <nav th:insert="navBar.html :: navbar"></nav>
+    <nav th:insert="./fragments/navBar.html :: navbar"></nav>
     <h1>Enviar Mensagem</h1>
     <div class="bd-example m-0 border-0">
       <form
-        th:action="@{/mensagem/enviar}"
+        th:action="@{/mensagem}"
         th:object="${mensagem}"
         method="post"
       >
-        <div class="mb-3">
-          <label class="form-label" for="emissor">De:</label>
-          <input class="form-control" type="text" id="emissor" name="emissor" th:field="*{emissor}" />
-          <span th:if="${#fields.hasErrors('emissor')}" th:errors="*{emissor}"></span>
-        </div>
 
         <div class="mb-3">
           <label class="form-label" for="receptor">Para:</label>

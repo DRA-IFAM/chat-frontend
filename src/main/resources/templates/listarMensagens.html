@@ -18,7 +18,6 @@
           <thead>
             <tr class="table-info">
               <th scope="col"></th>
-              <th scope="col">Emissor</th>
               <th scope="col">email</th>
               <th scope="col">Assunto</th>
               <th scope="col">DataHora</th>
@@ -27,13 +26,13 @@
           <tbody class="table-group-divider">
             <tr th:each="mensagem : ${mensagens}">
               <th scope="row" class="iconsCel">
-                  <form th:action="@{'/mensagem/deletar/{id}'(id=${mensagem.id})}" th:method="delete" >
-                    <button name="deletar contato" type="submit" class="bi bi-trash"></button>
+                  <form th:action="@{'/mensagem/{id}'(id=${mensagem.id})}" th:method="delete" >
+                    <button type="submit" class="bi bi-trash"></button>
                   </form>
               </th>
+              <td th:text="${mensagem.emissor}"></td>
               <td th:text="${mensagem.assunto}"></td>
-              <td th:text="${mensagem.conteudo}"></td>
-              <td th:text="${mensagem.receptor}"></td>
+              <td th:text="${mensagem.data}"></td>
             </tr>
 
           </tbody>
@@ -41,3 +40,4 @@
   </div>
 
 </body>
+</html>

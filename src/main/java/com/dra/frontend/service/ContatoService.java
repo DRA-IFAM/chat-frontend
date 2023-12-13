@@ -42,6 +42,7 @@ public class ContatoService {
     }
 
     public List<Contato> getContatos() {
+        createHttpHeaders();
         Contato[] response = restTemplate.getForObject(backendContatoURI, Contato[].class);
         return new ArrayList<Contato>(Arrays.asList(response));
     }

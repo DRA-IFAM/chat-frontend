@@ -4,13 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.dra.frontend.model.Acao;
-import com.dra.frontend.model.Mensagem;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -26,6 +28,11 @@ public class AcaoService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.setContentType(MediaType.APPLICATION_JSON);
+        addAuthToHeaders(headers);
+        return headers;
+    }
+
+    private HttpHeaders addAuthToHeaders(HttpHeaders headers){
         try{
             headers.add("Authorization", "Bearer " + userSession.getToken());
         }catch(Exception e){
@@ -34,8 +41,14 @@ public class AcaoService {
         return headers;
     }
 
-    public List<Acao> listaAcoes() {
-        return null;
+    public List<Object> listaAcoes(Long compromissoId) {
+        HttpHeaders headers = new HttpHeaders();
+        addAuthToHeaders(headers);
+        HttpEntity<Object> requestBody = new HttpEntity<Object>(headers);
+        ResponseEntity<Object[]> response = restTemplate.exchange(backendMensagemURI+"/"+compromissoId, HttpMethod.GET, requestBody, Object[].class);
+        
+        if(response == null) return new ArrayList<Object>();
+        return new ArrayList<Object>(Arrays.asList(response.getBody()));
     }
 
     public Acao detalhaAcao(Long acaoId) {
@@ -49,7 +62,11 @@ public class AcaoService {
     }
 
     public String deletaAcao(Long acaoId) {
-        return null;
+        HttpHeaders headers = new HttpHeaders();
+        addAuthToHeaders(headers);
+        HttpEntity<Object> requestBody = new HttpEntity<Object>(headers);
+        ResponseEntity<Object[]> response = restTemplate.exchange(backendMensagemURI+"/"+acaoId, HttpMethod.DELETE, requestBody, Object[].class);
+        return response.getStatusCode().toString();
     }
 
     public String atualizaAcao(Acao acao) {

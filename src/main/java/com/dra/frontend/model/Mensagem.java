@@ -38,10 +38,12 @@ public class Mensagem {
         this.id = mensagemDTO.getId();
     }
 
-    public Mensagem(String assunto, String conteudo, String receptor){
+    public Mensagem(Long id, Contato emissor, String assunto, String conteudo, Contato receptor, String data){
+        this.id = id;
         this.assunto = assunto;
         this.conteudo = conteudo;
-        this.receptor = new Contato();
-        this.receptor.setEmail(receptor);
+        this.emissor = new Contato(emissor.getEmail());
+        this.receptor = new Contato(receptor.getEmail());
+        this.data = data;
     }
 }

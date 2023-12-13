@@ -29,6 +29,10 @@ public class Contato {
         this.estado = estado;
     }
 
+    public Contato(String email) {
+        this.email = email;
+    }
+
 
     
 }

@@ -54,7 +54,7 @@ public class MensagemService {
     }
     
     public void deletarMensagem(Long mensagemId) {
-        String resource = backendMensagemURI + mensagemId;
+        String resource = backendMensagemURI + "/" +mensagemId;
         HttpEntity<Contato> requestBody = new HttpEntity<>(createHttpHeaders());
         restTemplate.exchange(resource, HttpMethod.DELETE, requestBody, Object.class);
     }
